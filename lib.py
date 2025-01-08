@@ -12,7 +12,7 @@ from torchvision import datasets
 import torchvision.transforms as transforms
 import torchvision.transforms.functional as TF
 
-def imshow(X, range=range(9), labels:list[str]=None, colorbar=True):
+def imshow(X, range=range(9), labels:list[str]=None, colorbar=True, a=None, b=None):
     if labels == None:
         labels = [None for i in range]
 
@@ -24,6 +24,8 @@ def imshow(X, range=range(9), labels:list[str]=None, colorbar=True):
         
         if len(img.shape) == 2:
             img = np.expand_dims(img, axis=0)
+        elif a is not None:
+            img = img[a:b,:,:]
         A = plt.imshow(np.transpose(img, (1, 2, 0)))
         if colorbar:
             plt.colorbar(A)
