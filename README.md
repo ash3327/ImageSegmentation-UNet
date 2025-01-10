@@ -9,7 +9,7 @@
 
 ## Backup of Old Project (December 2023)
 
-This is a backup of an old project focused on training a U-Net model for semantic segmentation from scratch on the Cityscapes dataset and Carvana dataset. The images are DOWNSCALED to speed up the training process for learning purposes. The model has been trained and tested with the following results:
+This is a backup of an old project focused on training a U-Net model from scratch for semantic segmentation from scratch on the Cityscapes dataset and Carvana dataset. The images are DOWNSCALED to speed up the training process for learning purposes. The model has been trained and tested with the following results:
 
 > [!WARNING]
 > If you are looking for a high-quality model, this is NOT the place. This is only a practice exercise when I was in year 2.
@@ -53,7 +53,7 @@ This is a backup of an old project focused on training a U-Net model for semanti
   ```
   Download from: [![Google Drive](https://img.shields.io/badge/Google%20Drive-Models-orange.svg?logo=googledrive&logoColor=white)](https://drive.google.com/drive/folders/1Mgb_YWV__zsQGNryXGvlOa2EaH49WERe)
 - **Training scripts**: Run `main_semantic_segmentation_carvana.py` and `main_semantic_segmentation_cityscape.py` as juypter notebooks.
-- **Testing scripts**: Run the same scripts as in training scripts starting from cell [8]. Specify the paths of the h5 files there. 
+- **Testing scripts**: Run the `test_semantic_segmentation_carvana.py` script as jupyter notebook. Specify the paths of the h5 files in cell [8]. 
 
 ## Experiments
 ### Carvana Dataset (Carvana Image Masking Challenge Dataset) [![Carvana Image Masking Challenge](https://img.shields.io/badge/Kaggle-Carvana%20Image%20Masking%20Challenge-blue.svg?logo=kaggle&logoColor=white)](https://www.kaggle.com/competitions/carvana-image-masking-challenge)
@@ -65,6 +65,23 @@ Dataset information
 Validation accuracies (highest)
 * Validation Pixel Accuracy: **0.9955**
 * Validation Dice Score: **0.9911**
+
+<h3 align="center"> Results </h3>
+
+Results on test set: (Top: Prediction, Bottom: Reference)
+
+![alt text](docs/image.png)
+
+Results on train set: (Top: Prediction, Bottom: Reference)
+
+![alt text](docs/image2.png)
+
+Inspection of intermediate layers: (In the order: Prediction, Output of Downsampling Block 1, Output of Bottleneck Block, Output of Upsampling Block 1, Reference)
+
+![alt text](docs/image4.png)
+
+<details>
+<summary>Details of the experiments</summary>
 
 ```
 Normalization: mean 0, std 1
@@ -119,18 +136,19 @@ Loss: BCEWithLogitsLoss
 Test accuracy: 99.6%, Avg loss: 0.009994, 
 Test recall: 0.9942919611930847, precision: 0.9879629611968994, dice_score: 0.9911173582077026
 ```
+</details>
+
+-----
 
 ### Cityscapes Dataset (Cityscapes Dataset) [![Cityscapes Dataset](https://img.shields.io/badge/Dataset-Cityscapes%20Dataset-00BFFF.svg?logo=data:image/png;base64,iVBORw0KGg&logoColor=white)](https://www.cityscapes-dataset.com/)
 
 * Test Pixel Accuracy: **0.8669**
+* The code for evaluating the mAP for the cityscape dataset has been lost. The code in this repository does not reflect the true results.
+
 ```
 1704279189_cityscapes/model_1704284109.h5: 
 
 **Documented:** 
 Test acc: 0.8402184247970581, Test loss: 0.6274673556908965
-
-**Tested again:**
-Test accuracy: 93.6%, Avg loss: 0.627467, 
-Test recall: 0.9598377346992493, precision: 0.3101913332939148, dice_score: 0.4688606858253479
-(0.6274673556908965, tensor(0.9360, device='cuda:0'))
 ```
+
